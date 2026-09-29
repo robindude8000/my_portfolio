@@ -1,11 +1,11 @@
 {
-  "name": "Rj",
-  "title": "Data Analyst moving into Data Engineering",
-  "summary": "I turn messy source data into clean, reliable tables. Day to day I write SQL in SQL Server; on my own time I build ETL/ELT pipelines in Python using a medallion architecture.",
-  "email": "you@example.com",
+  "name": "Arnold Ocampo Jr.",
+  "title": "Data Engineer",
+  "summary": "Data professional with 10 years of experience in data analysis, business intelligence, and end-to-end data workflows. Recently upskilled in Azure, Databricks, and Snowflake to design, build, and maintain scalable data pipelines. Proficient in data manipulation using Excel Power Query, SQL, Python, also Power BI, Tableau, Quicksight for dashboards and reports. With hands-on experience in designing and implementing end-to-end data workflows and ETL pipelines to convert raw data into structured formats suitable for analysis and reporting.",
+  "email": "arjay.ocampo16@gmail.com",
   "links": [
-    { "label": "GitHub", "url": "https://github.com/your-username" },
-    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/your-profile" }
+    { "label": "GitHub", "url": "https://robindude8000.github.io/my_portfolio/" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/aocampojr8000/" }
   ],
   "pipeline": [
     { "step": "Sources", "note": "Scraped pages, CSVs, APIs" },
