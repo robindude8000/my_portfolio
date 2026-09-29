@@ -7,63 +7,106 @@
 <meta name="description" content="Data engineering portfolio and CV.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <style>
+/* Three tones: ink (dark grey), graphite (mid grey), paper (white) */
 :root{
-  --bg:#1b1c1e; --surface:#232427; --line:#36383c;
-  --text:#f2f2f0; --muted:#9b9ea4;
-  --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --ink:#151618; --graphite:#26282b; --line:#383b40;
+  --paper:#f4f4f2; --muted:#9a9da3;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
 *{box-sizing:border-box}
-html{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-text-size-adjust:100%}
-body{margin:0;padding:72px 24px 96px}
-main{max-width:720px;margin:0 auto}
-h1{font-size:clamp(2.6rem,8vw,4.25rem);line-height:1.02;font-weight:600;letter-spacing:-.03em;margin:0 0 12px}
-h2{font-size:1.05rem;font-weight:600;margin:0 0 20px;color:var(--text)}
-h3{font-size:1.05rem;font-weight:500;margin:0}
+html{background:var(--ink);color:var(--paper);font-family:var(--sans);line-height:1.6;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0}
 p{margin:0}
-a{color:var(--text);text-decoration-color:var(--muted);text-underline-offset:3px}
-a:hover{text-decoration-color:var(--text)}
-a:focus-visible{outline:2px solid var(--text);outline-offset:3px;border-radius:2px}
+a{color:inherit;text-decoration-color:var(--muted);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--paper)}
+a:focus-visible{outline:2px solid var(--paper);outline-offset:3px;border-radius:2px}
 .muted{color:var(--muted)}
-.lead{font-size:1.15rem;color:var(--muted);max-width:60ch;margin-bottom:24px}
-.title{font-size:1.15rem;margin-bottom:20px}
-.links{display:flex;flex-wrap:wrap;gap:8px 24px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
 
-/* The one memorable element: the medallion pipeline */
-.pipeline{display:grid;grid-template-columns:repeat(4,1fr);margin:56px 0 0;border:1px solid var(--line);border-radius:6px;background:var(--surface);overflow:hidden}
-.pipeline li{list-style:none;padding:16px;border-left:1px solid var(--line)}
+/* Sticky bar */
+nav{position:sticky;top:0;z-index:5;background:rgba(21,22,24,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+nav strong{font-family:var(--serif);font-weight:600;font-size:1.1rem}
+nav div{display:flex;gap:24px;font-size:.92rem}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--paper)}
+
+/* Hero */
+header{position:relative;padding:112px 0 88px;overflow:hidden}
+header::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,#33363a 1px,transparent 0);background-size:26px 26px;-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.4),transparent);mask-image:linear-gradient(to bottom,rgba(0,0,0,.4),transparent)}
+header .wrap{position:relative}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(3.4rem,11vw,7.5rem);line-height:.95;letter-spacing:-.035em;margin:0 0 24px}
+.title{font-family:var(--serif);font-size:clamp(1.3rem,3vw,1.8rem);margin-bottom:20px}
+.lead{font-size:1.1rem;color:var(--muted);max-width:56ch}
+
+/* Pipeline: data flows left to right and ends as the white "gold" layer */
+.pipeline{position:relative;display:grid;margin:64px 0 0;padding:0;list-style:none;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.pipeline li{padding:20px;border-left:1px solid var(--line);background:var(--graphite);animation:lit .6s ease forwards}
 .pipeline li:first-child{border-left:0}
-.pipeline b{display:block;font-weight:600;margin-bottom:2px}
-.pipeline span{font-size:.85rem;color:var(--muted);line-height:1.4;display:block}
-.pipeline li:nth-child(1){opacity:.7}
-.pipeline li:nth-child(2){opacity:.82}
-.pipeline li:nth-child(3){opacity:.92}
-.pipeline ol{display:contents;margin:0;padding:0}
+.pipeline b{display:block;font-weight:600;font-size:1.05rem}
+.pipeline span{display:block;font-size:.85rem;opacity:.7;line-height:1.4;margin-top:2px}
+.flow{position:absolute;top:0;left:0;width:36px;height:2px;background:var(--paper);box-shadow:0 0 12px 2px rgba(244,244,242,.6);animation:run 2.6s cubic-bezier(.5,0,.3,1) .3s forwards}
+@keyframes lit{from{background:var(--ink);color:var(--muted)}to{background:var(--to);color:var(--toText)}}
+@keyframes run{to{left:calc(100% - 36px);opacity:0}}
 
-section{margin-top:72px}
-.item{padding:20px 0;border-top:1px solid var(--line)}
-.item:last-child{border-bottom:1px solid var(--line)}
-.row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline}
-.item p{margin-top:6px;color:var(--muted);max-width:62ch}
-.stack{margin-top:10px;font-size:.9rem;color:var(--muted)}
-ul.points{margin:8px 0 0;padding-left:18px;color:var(--muted);max-width:62ch}
-ul.points li{margin-top:4px}
-.skill{display:grid;grid-template-columns:180px 1fr;gap:8px 24px;padding:14px 0;border-top:1px solid var(--line)}
+/* Sections */
+.sec{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:72px 0;border-top:1px solid var(--line)}
+h2{font-family:var(--serif);font-weight:600;font-size:1.7rem;letter-spacing:-.01em;margin:0}
+h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0;letter-spacing:-.01em}
+.list{display:grid}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:.82rem;color:var(--muted)}
+
+/* Projects flip to white on hover */
+.proj{display:block;text-decoration:none;padding:28px 20px;margin:0 -20px;border-top:1px solid var(--line);border-radius:6px;transition:background .2s,color .2s}
+.proj:last-child{border-bottom:1px solid var(--line)}
+.proj p{margin:8px 0 16px;color:var(--muted);max-width:60ch;transition:color .2s}
+.proj:hover,.proj:focus-visible{background:var(--paper);color:var(--ink)}
+.proj:hover p,.proj:focus-visible p{color:#4a4d52}
+.proj:hover .chip,.proj:focus-visible .chip{border-color:#b9bbbf;color:#3a3d42}
+
+.skill{display:grid;grid-template-columns:170px 1fr;gap:12px 24px;padding:18px 0;border-top:1px solid var(--line)}
 .skill:last-child{border-bottom:1px solid var(--line)}
-footer{margin-top:72px;color:var(--muted);font-size:.9rem}
+.entry{padding:24px 0;border-top:1px solid var(--line)}
+.entry:last-child{border-bottom:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline}
+ul.points{margin:12px 0 0;padding-left:18px;color:var(--muted);max-width:60ch}
+ul.points li{margin-top:4px}
 
-@media (max-width:640px){
-  body{padding:48px 20px 72px}
-  .pipeline{grid-template-columns:1fr}
+/* Contact: inverted block */
+.contact{background:var(--paper);color:var(--ink);border-radius:10px;padding:56px 40px;margin:24px 0 72px}
+.contact h2{font-size:clamp(2rem,6vw,3.2rem);line-height:1.05;margin-bottom:20px}
+.contact .mail{font-size:clamp(1.1rem,3vw,1.5rem);font-weight:500}
+.contact .links{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:20px}
+.contact a{text-decoration-color:#8b8e94}
+.contact a:hover{text-decoration-color:var(--ink)}
+.contact a:focus-visible{outline-color:var(--ink)}
+footer{padding:0 0 48px;color:var(--muted);font-size:.85rem}
+
+@media (max-width:720px){
+  header{padding:72px 0 56px}
+  .pipeline{grid-template-columns:1fr!important}
   .pipeline li{border-left:0;border-top:1px solid var(--line)}
   .pipeline li:first-child{border-top:0}
+  .flow{display:none}
+  .sec{grid-template-columns:1fr;padding:56px 0}
   .skill{grid-template-columns:1fr}
+  nav div{gap:16px}
+  .contact{padding:40px 24px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .flow{display:none}
+  .pipeline li{animation:none;background:var(--to);color:var(--toText)}
+  .proj,.proj p{transition:none}
 }
 </style>
 </head>
 <body>
-<main id="app" aria-live="polite"><p class="muted">Loading</p></main>
+<div id="app"><div class="wrap"><p class="muted" style="padding:96px 0">Loading</p></div></div>
 <script>
 const el = (tag, cls, text) => {
   const n = document.createElement(tag);
@@ -71,15 +114,21 @@ const el = (tag, cls, text) => {
   if (text != null) n.textContent = text;
   return n;
 };
-const link = (label, url) => {
+const chips = (items) => {
+  const c = el("div", "chips");
+  items.forEach(t => c.append(el("span", "chip", t)));
+  return c;
+};
+const extLink = (label, url) => {
   const a = el("a", "", label);
   a.href = url; a.target = "_blank"; a.rel = "noopener";
   return a;
 };
-const section = (heading) => {
-  const s = el("section");
-  s.append(el("h2", "", heading));
-  return s;
+const sec = (id, heading) => {
+  const s = el("section", "sec"); s.id = id;
+  const list = el("div", "list");
+  s.append(el("h2", "", heading), list);
+  return { s, list };
 };
 
 function render(d) {
@@ -87,59 +136,63 @@ function render(d) {
   app.textContent = "";
   document.title = d.name + " | Data Engineering Portfolio";
 
-  // Header
-  const head = el("header");
-  head.append(el("h1", "", d.name), el("p", "title", d.title), el("p", "lead", d.summary));
-  const links = el("div", "links");
-  if (d.email) { const m = el("a", "", d.email); m.href = "mailto:" + d.email; links.append(m); }
-  (d.links || []).forEach(l => links.append(link(l.label, l.url)));
-  head.append(links);
+  // Nav
+  const nav = el("nav"), nw = el("div", "wrap"), nl = el("div");
+  [["Projects", "projects"], ["Skills", "skills"], ["Experience", "experience"], ["Contact", "contact"]]
+    .forEach(([t, id]) => { const a = el("a", "", t); a.href = "#" + id; nl.append(a); });
+  nw.append(el("strong", "", d.name), nl); nav.append(nw); app.append(nav);
 
+  // Hero
+  const header = el("header"), hw = el("div", "wrap");
+  hw.append(el("h1", "", d.name), el("p", "title", d.title), el("p", "lead", d.summary));
   if (d.pipeline && d.pipeline.length) {
     const ol = el("ol", "pipeline");
-    ol.style.gridTemplateColumns = "repeat(" + d.pipeline.length + ",1fr)";
-    d.pipeline.forEach(p => {
+    const n = d.pipeline.length;
+    ol.style.gridTemplateColumns = "repeat(" + n + ",1fr)";
+    ol.append(el("div", "flow"));
+    const greys = ["#2b2d30", "#35383c", "#42454a"];
+    d.pipeline.forEach((p, i) => {
+      const last = i === n - 1;
       const li = el("li");
+      li.style.setProperty("--to", last ? "#f4f4f2" : greys[Math.min(i, 2)]);
+      li.style.setProperty("--toText", last ? "#151618" : "#f4f4f2");
+      li.style.animationDelay = (0.3 + (i / n) * 2.2) + "s";
+      li.style.animationFillMode = "backwards";
       li.append(el("b", "", p.step), el("span", "", p.note));
       ol.append(li);
     });
-    head.append(ol);
+    hw.append(ol);
   }
-  app.append(head);
+  header.append(hw); app.append(header);
 
-  // Projects
+  const main = el("main", "wrap");
+
   if (d.projects && d.projects.length) {
-    const s = section("Projects");
+    const { s, list } = sec("projects", "Projects");
     d.projects.forEach(p => {
-      const item = el("div", "item");
-      const row = el("div", "row");
-      const h = el("h3");
-      h.append(p.url ? link(p.name, p.url) : document.createTextNode(p.name));
-      row.append(h);
-      item.append(row, el("p", "", p.description));
-      if (p.stack) item.append(el("div", "stack", p.stack.join(", ")));
-      s.append(item);
+      const a = el(p.url ? "a" : "div", "proj");
+      if (p.url) { a.href = p.url; a.target = "_blank"; a.rel = "noopener"; }
+      a.append(el("h3", "", p.name), el("p", "", p.description));
+      if (p.stack) a.append(chips(p.stack));
+      list.append(a);
     });
-    app.append(s);
+    main.append(s);
   }
 
-  // Skills
   if (d.skills && d.skills.length) {
-    const s = section("Skills");
+    const { s, list } = sec("skills", "Skills");
     d.skills.forEach(g => {
       const r = el("div", "skill");
-      r.append(el("span", "muted", g.group), el("span", "", g.items.join(", ")));
-      s.append(r);
+      r.append(el("span", "muted", g.group), chips(g.items));
+      list.append(r);
     });
-    app.append(s);
+    main.append(s);
   }
 
-  // Experience (a real sequence, so listed in order)
-  if (d.experience && d.experience.length) {
-    const s = section("Experience");
-    d.experience.forEach(e => {
-      const item = el("div", "item");
-      const row = el("div", "row");
+  if (d.experience && d.experience.length || d.education && d.education.length) {
+    const { s, list } = sec("experience", "Experience");
+    (d.experience || []).forEach(e => {
+      const item = el("div", "entry"), row = el("div", "row");
       row.append(el("h3", "", e.role + ", " + e.org), el("span", "muted", e.period));
       item.append(row);
       if (e.points) {
@@ -147,25 +200,29 @@ function render(d) {
         e.points.forEach(t => ul.append(el("li", "", t)));
         item.append(ul);
       }
-      s.append(item);
+      list.append(item);
     });
-    app.append(s);
-  }
-
-  // Education
-  if (d.education && d.education.length) {
-    const s = section("Education");
-    d.education.forEach(e => {
-      const item = el("div", "item");
-      const row = el("div", "row");
+    (d.education || []).forEach(e => {
+      const item = el("div", "entry"), row = el("div", "row");
       row.append(el("h3", "", e.degree + ", " + e.org), el("span", "muted", e.period));
       item.append(row);
-      s.append(item);
+      list.append(item);
     });
-    app.append(s);
+    main.append(s);
   }
 
-  app.append(el("footer", "", "Last updated " + new Date().getFullYear()));
+  // Contact
+  const c = el("section", "contact"); c.id = "contact";
+  c.append(el("h2", "", "Get in touch"));
+  if (d.email) { const m = el("a", "mail", d.email); m.href = "mailto:" + d.email; c.append(m); }
+  if (d.links && d.links.length) {
+    const l = el("div", "links");
+    d.links.forEach(x => l.append(extLink(x.label, x.url)));
+    c.append(l);
+  }
+  main.append(c);
+  main.append(el("footer", "", "\u00A9 " + new Date().getFullYear() + " " + d.name));
+  app.append(main);
 }
 
 fetch("data.json")
@@ -173,7 +230,7 @@ fetch("data.json")
   .then(render)
   .catch(() => {
     document.getElementById("app").textContent =
-      "Could not load data.json. If you opened this file directly, run a local server (see README).";
+      "Could not load data.json. If you opened this file directly, run a local server: python -m http.server 8000";
   });
 </script>
 </body>
