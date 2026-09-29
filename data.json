@@ -1,0 +1,49 @@
+{
+  "name": "Rj",
+  "title": "Data Analyst moving into Data Engineering",
+  "summary": "I turn messy source data into clean, reliable tables. Day to day I write SQL in SQL Server; on my own time I build ETL/ELT pipelines in Python using a medallion architecture.",
+  "email": "you@example.com",
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/your-username" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/your-profile" }
+  ],
+  "pipeline": [
+    { "step": "Sources", "note": "Scraped pages, CSVs, APIs" },
+    { "step": "Bronze", "note": "Raw data, stored as received" },
+    { "step": "Silver", "note": "Cleaned, typed, deduplicated" },
+    { "step": "Gold", "note": "Analysis-ready tables" }
+  ],
+  "projects": [
+    {
+      "name": "Job Skills Analyzer",
+      "description": "Scrapes job postings, loads them into a database, and shows which skills employers ask for most in a Streamlit dashboard.",
+      "stack": ["Python", "SQLAlchemy", "pandas", "Streamlit"],
+      "url": "https://github.com/your-username/job-skills-analyzer"
+    },
+    {
+      "name": "Local medallion ETL",
+      "description": "Replace this with a short description: what data goes in, what each layer does, what comes out.",
+      "stack": ["Python", "SQL Server"],
+      "url": "https://github.com/your-username/your-repo"
+    }
+  ],
+  "skills": [
+    { "group": "Languages", "items": ["SQL (SQL Server)", "Python"] },
+    { "group": "Data engineering", "items": ["ETL / ELT", "Medallion architecture", "pandas", "SQLAlchemy"] },
+    { "group": "Tools", "items": ["Git", "Streamlit"] }
+  ],
+  "experience": [
+    {
+      "role": "Data Analyst",
+      "org": "Your Company",
+      "period": "2022 to present",
+      "points": [
+        "Write and maintain SQL queries and reports in SQL Server.",
+        "Replace this line with a result you delivered, ideally with a number."
+      ]
+    }
+  ],
+  "education": [
+    { "degree": "Your Degree", "org": "Your School", "period": "Year" }
+  ]
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Engineering Portfolio</title>
+<meta name="description" content="Data engineering portfolio and CV.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1b1c1e; --surface:#232427; --line:#36383c;
+  --text:#f2f2f0; --muted:#9b9ea4;
+  --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-text-size-adjust:100%}
+body{margin:0;padding:72px 24px 96px}
+main{max-width:720px;margin:0 auto}
+h1{font-size:clamp(2.6rem,8vw,4.25rem);line-height:1.02;font-weight:600;letter-spacing:-.03em;margin:0 0 12px}
+h2{font-size:1.05rem;font-weight:600;margin:0 0 20px;color:var(--text)}
+h3{font-size:1.05rem;font-weight:500;margin:0}
+p{margin:0}
+a{color:var(--text);text-decoration-color:var(--muted);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--text)}
+a:focus-visible{outline:2px solid var(--text);outline-offset:3px;border-radius:2px}
+.muted{color:var(--muted)}
+.lead{font-size:1.15rem;color:var(--muted);max-width:60ch;margin-bottom:24px}
+.title{font-size:1.15rem;margin-bottom:20px}
+.links{display:flex;flex-wrap:wrap;gap:8px 24px}
+
+/* The one memorable element: the medallion pipeline */
+.pipeline{display:grid;grid-template-columns:repeat(4,1fr);margin:56px 0 0;border:1px solid var(--line);border-radius:6px;background:var(--surface);overflow:hidden}
+.pipeline li{list-style:none;padding:16px;border-left:1px solid var(--line)}
+.pipeline li:first-child{border-left:0}
+.pipeline b{display:block;font-weight:600;margin-bottom:2px}
+.pipeline span{font-size:.85rem;color:var(--muted);line-height:1.4;display:block}
+.pipeline li:nth-child(1){opacity:.7}
+.pipeline li:nth-child(2){opacity:.82}
+.pipeline li:nth-child(3){opacity:.92}
+.pipeline ol{display:contents;margin:0;padding:0}
+
+section{margin-top:72px}
+.item{padding:20px 0;border-top:1px solid var(--line)}
+.item:last-child{border-bottom:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline}
+.item p{margin-top:6px;color:var(--muted);max-width:62ch}
+.stack{margin-top:10px;font-size:.9rem;color:var(--muted)}
+ul.points{margin:8px 0 0;padding-left:18px;color:var(--muted);max-width:62ch}
+ul.points li{margin-top:4px}
+.skill{display:grid;grid-template-columns:180px 1fr;gap:8px 24px;padding:14px 0;border-top:1px solid var(--line)}
+.skill:last-child{border-bottom:1px solid var(--line)}
+footer{margin-top:72px;color:var(--muted);font-size:.9rem}
+
+@media (max-width:640px){
+  body{padding:48px 20px 72px}
+  .pipeline{grid-template-columns:1fr}
+  .pipeline li{border-left:0;border-top:1px solid var(--line)}
+  .pipeline li:first-child{border-top:0}
+  .skill{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<main id="app" aria-live="polite"><p class="muted">Loading</p></main>
+<script>
+const el = (tag, cls, text) => {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text != null) n.textContent = text;
+  return n;
+};
+const link = (label, url) => {
+  const a = el("a", "", label);
+  a.href = url; a.target = "_blank"; a.rel = "noopener";
+  return a;
+};
+const section = (heading) => {
+  const s = el("section");
+  s.append(el("h2", "", heading));
+  return s;
+};
+
+function render(d) {
+  const app = document.getElementById("app");
+  app.textContent = "";
+  document.title = d.name + " | Data Engineering Portfolio";
+
+  // Header
+  const head = el("header");
+  head.append(el("h1", "", d.name), el("p", "title", d.title), el("p", "lead", d.summary));
+  const links = el("div", "links");
+  if (d.email) { const m = el("a", "", d.email); m.href = "mailto:" + d.email; links.append(m); }
+  (d.links || []).forEach(l => links.append(link(l.label, l.url)));
+  head.append(links);
+
+  if (d.pipeline && d.pipeline.length) {
+    const ol = el("ol", "pipeline");
+    ol.style.gridTemplateColumns = "repeat(" + d.pipeline.length + ",1fr)";
+    d.pipeline.forEach(p => {
+      const li = el("li");
+      li.append(el("b", "", p.step), el("span", "", p.note));
+      ol.append(li);
+    });
+    head.append(ol);
+  }
+  app.append(head);
+
+  // Projects
+  if (d.projects && d.projects.length) {
+    const s = section("Projects");
+    d.projects.forEach(p => {
+      const item = el("div", "item");
+      const row = el("div", "row");
+      const h = el("h3");
+      h.append(p.url ? link(p.name, p.url) : document.createTextNode(p.name));
+      row.append(h);
+      item.append(row, el("p", "", p.description));
+      if (p.stack) item.append(el("div", "stack", p.stack.join(", ")));
+      s.append(item);
+    });
+    app.append(s);
+  }
+
+  // Skills
+  if (d.skills && d.skills.length) {
+    const s = section("Skills");
+    d.skills.forEach(g => {
+      const r = el("div", "skill");
+      r.append(el("span", "muted", g.group), el("span", "", g.items.join(", ")));
+      s.append(r);
+    });
+    app.append(s);
+  }
+
+  // Experience (a real sequence, so listed in order)
+  if (d.experience && d.experience.length) {
+    const s = section("Experience");
+    d.experience.forEach(e => {
+      const item = el("div", "item");
+      const row = el("div", "row");
+      row.append(el("h3", "", e.role + ", " + e.org), el("span", "muted", e.period));
+      item.append(row);
+      if (e.points) {
+        const ul = el("ul", "points");
+        e.points.forEach(t => ul.append(el("li", "", t)));
+        item.append(ul);
+      }
+      s.append(item);
+    });
+    app.append(s);
+  }
+
+  // Education
+  if (d.education && d.education.length) {
+    const s = section("Education");
+    d.education.forEach(e => {
+      const item = el("div", "item");
+      const row = el("div", "row");
+      row.append(el("h3", "", e.degree + ", " + e.org), el("span", "muted", e.period));
+      item.append(row);
+      s.append(item);
+    });
+    app.append(s);
+  }
+
+  app.append(el("footer", "", "Last updated " + new Date().getFullYear()));
+}
+
+fetch("data.json")
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(render)
+  .catch(() => {
+    document.getElementById("app").textContent =
+      "Could not load data.json. If you opened this file directly, run a local server (see README).";
+  });
+</script>
+</body>
+</html>
