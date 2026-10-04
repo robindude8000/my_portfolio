@@ -1,237 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Data Engineering Portfolio</title>
-<meta name="description" content="Data engineering portfolio and CV.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
-<style>
-/* Three tones: ink (dark grey), graphite (mid grey), paper (white) */
-:root{
-  --ink:#151618; --graphite:#26282b; --line:#383b40;
-  --paper:#f4f4f2; --muted:#9a9da3;
-  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
-  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-}
-*{box-sizing:border-box}
-html{background:var(--ink);color:var(--paper);font-family:var(--sans);line-height:1.6;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0}
-p{margin:0}
-a{color:inherit;text-decoration-color:var(--muted);text-underline-offset:3px}
-a:hover{text-decoration-color:var(--paper)}
-a:focus-visible{outline:2px solid var(--paper);outline-offset:3px;border-radius:2px}
-.muted{color:var(--muted)}
-.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
-
-/* Sticky bar */
-nav{position:sticky;top:0;z-index:5;background:rgba(21,22,24,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
-nav strong{font-family:var(--serif);font-weight:600;font-size:1.1rem}
-nav div{display:flex;gap:24px;font-size:.92rem}
-nav a{text-decoration:none;color:var(--muted)}
-nav a:hover{color:var(--paper)}
-
-/* Hero */
-header{position:relative;padding:112px 0 88px;overflow:hidden}
-header::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,#33363a 1px,transparent 0);background-size:26px 26px;-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.4),transparent);mask-image:linear-gradient(to bottom,rgba(0,0,0,.4),transparent)}
-header .wrap{position:relative}
-h1{font-family:var(--serif);font-weight:600;font-size:clamp(3.4rem,11vw,7.5rem);line-height:.95;letter-spacing:-.035em;margin:0 0 24px}
-.title{font-family:var(--serif);font-size:clamp(1.3rem,3vw,1.8rem);margin-bottom:20px}
-.lead{font-size:1.1rem;color:var(--muted);max-width:56ch}
-
-/* Pipeline: data flows left to right and ends as the white "gold" layer */
-.pipeline{position:relative;display:grid;margin:64px 0 0;padding:0;list-style:none;border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.pipeline li{padding:20px;border-left:1px solid var(--line);background:var(--graphite);animation:lit .6s ease forwards}
-.pipeline li:first-child{border-left:0}
-.pipeline b{display:block;font-weight:600;font-size:1.05rem}
-.pipeline span{display:block;font-size:.85rem;opacity:.7;line-height:1.4;margin-top:2px}
-.flow{position:absolute;top:0;left:0;width:36px;height:2px;background:var(--paper);box-shadow:0 0 12px 2px rgba(244,244,242,.6);animation:run 2.6s cubic-bezier(.5,0,.3,1) .3s forwards}
-@keyframes lit{from{background:var(--ink);color:var(--muted)}to{background:var(--to);color:var(--toText)}}
-@keyframes run{to{left:calc(100% - 36px);opacity:0}}
-
-/* Sections */
-.sec{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:72px 0;border-top:1px solid var(--line)}
-h2{font-family:var(--serif);font-weight:600;font-size:1.7rem;letter-spacing:-.01em;margin:0}
-h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0;letter-spacing:-.01em}
-.list{display:grid}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:.82rem;color:var(--muted)}
-
-/* Projects flip to white on hover */
-.proj{display:block;text-decoration:none;padding:28px 20px;margin:0 -20px;border-top:1px solid var(--line);border-radius:6px;transition:background .2s,color .2s}
-.proj:last-child{border-bottom:1px solid var(--line)}
-.proj p{margin:8px 0 16px;color:var(--muted);max-width:60ch;transition:color .2s}
-.proj:hover,.proj:focus-visible{background:var(--paper);color:var(--ink)}
-.proj:hover p,.proj:focus-visible p{color:#4a4d52}
-.proj:hover .chip,.proj:focus-visible .chip{border-color:#b9bbbf;color:#3a3d42}
-
-.skill{display:grid;grid-template-columns:170px 1fr;gap:12px 24px;padding:18px 0;border-top:1px solid var(--line)}
-.skill:last-child{border-bottom:1px solid var(--line)}
-.entry{padding:24px 0;border-top:1px solid var(--line)}
-.entry:last-child{border-bottom:1px solid var(--line)}
-.row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline}
-ul.points{margin:12px 0 0;padding-left:18px;color:var(--muted);max-width:60ch}
-ul.points li{margin-top:4px}
-
-/* Contact: inverted block */
-.contact{background:var(--paper);color:var(--ink);border-radius:10px;padding:56px 40px;margin:24px 0 72px}
-.contact h2{font-size:clamp(2rem,6vw,3.2rem);line-height:1.05;margin-bottom:20px}
-.contact .mail{font-size:clamp(1.1rem,3vw,1.5rem);font-weight:500}
-.contact .links{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:20px}
-.contact a{text-decoration-color:#8b8e94}
-.contact a:hover{text-decoration-color:var(--ink)}
-.contact a:focus-visible{outline-color:var(--ink)}
-footer{padding:0 0 48px;color:var(--muted);font-size:.85rem}
-
-@media (max-width:720px){
-  header{padding:72px 0 56px}
-  .pipeline{grid-template-columns:1fr!important}
-  .pipeline li{border-left:0;border-top:1px solid var(--line)}
-  .pipeline li:first-child{border-top:0}
-  .flow{display:none}
-  .sec{grid-template-columns:1fr;padding:56px 0}
-  .skill{grid-template-columns:1fr}
-  nav div{gap:16px}
-  .contact{padding:40px 24px}
-}
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .flow{display:none}
-  .pipeline li{animation:none;background:var(--to);color:var(--toText)}
-  .proj,.proj p{transition:none}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Personal data engineering portfolio: selected projects, skills, and experience.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Data Engineering Portfolio">
+  <meta property="og:description" content="Selected data engineering projects, skills, and experience.">
+  <meta name="theme-color" content="#f4f4f2">
+  <title>Data Engineering Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400;500&display=optional" rel="stylesheet">
+  <script>
+    // Apply the saved preference before painting; storage may be unavailable.
+    try {
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      document.documentElement.dataset.theme = ['light', 'dark'].includes(savedTheme)
+        ? savedTheme : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    } catch {
+      document.documentElement.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+  </script>
+  <link rel="stylesheet" href="./assets/styles.css">
+  <script src="./assets/app.js" defer></script>
 </head>
 <body>
-<div id="app"><div class="wrap"><p class="muted" style="padding:96px 0">Loading</p></div></div>
-<script>
-const el = (tag, cls, text) => {
-  const n = document.createElement(tag);
-  if (cls) n.className = cls;
-  if (text != null) n.textContent = text;
-  return n;
-};
-const chips = (items) => {
-  const c = el("div", "chips");
-  items.forEach(t => c.append(el("span", "chip", t)));
-  return c;
-};
-const extLink = (label, url) => {
-  const a = el("a", "", label);
-  a.href = url; a.target = "_blank"; a.rel = "noopener";
-  return a;
-};
-const sec = (id, heading) => {
-  const s = el("section", "sec"); s.id = id;
-  const list = el("div", "list");
-  s.append(el("h2", "", heading), list);
-  return { s, list };
-};
-
-function render(d) {
-  const app = document.getElementById("app");
-  app.textContent = "";
-  document.title = d.name + " | Data Engineering Portfolio";
-
-  // Nav
-  const nav = el("nav"), nw = el("div", "wrap"), nl = el("div");
-  [["Projects", "projects"], ["Skills", "skills"], ["Experience", "experience"], ["Contact", "contact"]]
-    .forEach(([t, id]) => { const a = el("a", "", t); a.href = "#" + id; nl.append(a); });
-  nw.append(el("strong", "", d.name), nl); nav.append(nw); app.append(nav);
-
-  // Hero
-  const header = el("header"), hw = el("div", "wrap");
-  hw.append(el("h1", "", d.name), el("p", "title", d.title), el("p", "lead", d.summary));
-  if (d.pipeline && d.pipeline.length) {
-    const ol = el("ol", "pipeline");
-    const n = d.pipeline.length;
-    ol.style.gridTemplateColumns = "repeat(" + n + ",1fr)";
-    ol.append(el("div", "flow"));
-    const greys = ["#2b2d30", "#35383c", "#42454a"];
-    d.pipeline.forEach((p, i) => {
-      const last = i === n - 1;
-      const li = el("li");
-      li.style.setProperty("--to", last ? "#f4f4f2" : greys[Math.min(i, 2)]);
-      li.style.setProperty("--toText", last ? "#151618" : "#f4f4f2");
-      li.style.animationDelay = (0.3 + (i / n) * 2.2) + "s";
-      li.style.animationFillMode = "backwards";
-      li.append(el("b", "", p.step), el("span", "", p.note));
-      ol.append(li);
-    });
-    hw.append(ol);
-  }
-  header.append(hw); app.append(header);
-
-  const main = el("main", "wrap");
-
-  if (d.projects && d.projects.length) {
-    const { s, list } = sec("projects", "Projects");
-    d.projects.forEach(p => {
-      const a = el(p.url ? "a" : "div", "proj");
-      if (p.url) { a.href = p.url; a.target = "_blank"; a.rel = "noopener"; }
-      a.append(el("h3", "", p.name), el("p", "", p.description));
-      if (p.stack) a.append(chips(p.stack));
-      list.append(a);
-    });
-    main.append(s);
-  }
-
-  if (d.skills && d.skills.length) {
-    const { s, list } = sec("skills", "Skills");
-    d.skills.forEach(g => {
-      const r = el("div", "skill");
-      r.append(el("span", "muted", g.group), chips(g.items));
-      list.append(r);
-    });
-    main.append(s);
-  }
-
-  if (d.experience && d.experience.length || d.education && d.education.length) {
-    const { s, list } = sec("experience", "Experience");
-    (d.experience || []).forEach(e => {
-      const item = el("div", "entry"), row = el("div", "row");
-      row.append(el("h3", "", e.role + ", " + e.org), el("span", "muted", e.period));
-      item.append(row);
-      if (e.points) {
-        const ul = el("ul", "points");
-        e.points.forEach(t => ul.append(el("li", "", t)));
-        item.append(ul);
-      }
-      list.append(item);
-    });
-    (d.education || []).forEach(e => {
-      const item = el("div", "entry"), row = el("div", "row");
-      row.append(el("h3", "", e.degree + ", " + e.org), el("span", "muted", e.period));
-      item.append(row);
-      list.append(item);
-    });
-    main.append(s);
-  }
-
-  // Contact
-  const c = el("section", "contact"); c.id = "contact";
-  c.append(el("h2", "", "Get in touch"));
-  if (d.email) { const m = el("a", "mail", d.email); m.href = "mailto:" + d.email; c.append(m); }
-  if (d.links && d.links.length) {
-    const l = el("div", "links");
-    d.links.forEach(x => l.append(extLink(x.label, x.url)));
-    c.append(l);
-  }
-  main.append(c);
-  main.append(el("footer", "", "\u00A9 " + new Date().getFullYear() + " " + d.name));
-  app.append(main);
-}
-
-fetch("data.json")
-  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then(render)
-  .catch(() => {
-    document.getElementById("app").textContent =
-      "Could not load data.json. If you opened this file directly, run a local server: python -m http.server 8000";
-  });
-</script>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar"><div class="topbar-inner"><a class="brand" href="#home" id="brand"></a><div class="header-controls"><nav aria-label="Main navigation" id="navigation"></nav><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false"><span class="theme-light" aria-hidden="true">Light</span><span class="theme-dark" aria-hidden="true">Dark</span></button></div></div></header>
+  <main id="main">
+    <p id="load-status" class="load-status">Loading portfolio…</p>
+    <noscript><p class="load-status">Enable JavaScript to view this portfolio.</p></noscript>
+    <div id="portfolio" hidden>
+      <section class="hero" id="home" aria-labelledby="name"><div class="hero-inner"><p class="eyebrow" id="title"></p><h1 id="name"></h1><p class="summary" id="summary"></p></div></section>
+      <div class="page-content">
+        <section class="content-section" id="projects" aria-labelledby="projects-heading"><div class="section-heading"><p class="eyebrow">01 / Selected work</p><h2 id="projects-heading">Projects</h2></div><div id="project-list"></div></section>
+        <section class="content-section" id="skills" aria-labelledby="skills-heading"><div class="section-heading"><p class="eyebrow">02 / Toolkit</p><h2 id="skills-heading">Skills</h2></div><div id="skill-list"></div></section>
+        <section class="content-section" id="experience" aria-labelledby="experience-heading"><div class="section-heading"><p class="eyebrow">03 / Background</p><h2 id="experience-heading">Experience</h2></div><div id="experience-list"></div></section>
+        <section class="content-section" id="education" aria-labelledby="education-heading"><div class="section-heading"><p class="eyebrow">04 / Learning</p><h2 id="education-heading">Education</h2></div><div id="education-list"></div></section>
+        <section class="contact" id="contact" aria-labelledby="contact-heading"><div><p class="eyebrow">05 / Start a conversation</p><h2 id="contact-heading">Get in touch.</h2></div><div class="contact-details"><a id="email" class="email"></a><div id="contact-links"></div></div></section>
+        <footer><span id="footer-name"></span><a href="#home">Back to top</a></footer>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
