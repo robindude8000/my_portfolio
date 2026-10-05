@@ -64,6 +64,7 @@ a.project:hover .tags li, a.project:focus-visible .tags li { border-color: var(-
 .skill-group + .skill-group { margin-top: 30px; }
 .skill-group h3 { font-size: 14px; margin-bottom: 13px; }
 .entry + .entry { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border); }
+.organization, .date, .entry ul, .entry li { font-family: var(--body); }
 .organization { margin: 0; color: var(--muted); }
 .date { font-size: 12px; color: var(--muted); margin: 9px 0 18px; }
 .current { display: inline-block; margin-left: 12px; padding: 2px 8px; border: 1px solid var(--border); border-radius: 20px; color: var(--text); font-size: 10px; }
