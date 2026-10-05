@@ -8,8 +8,8 @@
   --text: var(--ink);
   --muted: var(--border-dark);
   --border: var(--muted-dark);
-  --heading: 'Montserrat', Arial, sans-serif;
-  --body: 'Plus Jakarta Sans', Arial, sans-serif;
+  --heading: 'Crimson Text', Georgia, serif;
+  --body: 'Google Sans', Arial, sans-serif;
   color-scheme: light;
 }
 :root[data-theme='dark'] {
@@ -31,7 +31,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline
 .skip-link:focus { transform: none; }
 .topbar { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--border); background: var(--background); background: color-mix(in srgb, var(--background) 88%, transparent); backdrop-filter: blur(16px); }
 .topbar-inner { max-width: 1200px; margin: auto; min-height: 78px; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.brand { font-family: var(--heading); font-size: 18px; font-weight: 500; text-decoration: none; }
+.brand { font-family: var(--heading); font-size: 18px; font-weight: 600; text-decoration: none; }
 .header-controls, nav { display: flex; align-items: center; gap: 28px; }
 nav { flex-wrap: wrap; }
 nav a { font-size: 12px; color: var(--muted); text-decoration: none; }
@@ -47,7 +47,7 @@ nav a:hover, nav a:focus-visible { color: var(--text); }
 .hero-inner { padding-top: clamp(64px, 10vw, 128px); padding-bottom: 76px; }
 .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 20px; }
 h1, h2, h3, p { overflow-wrap: anywhere; }
-h1, h2 { font-family: var(--heading); font-weight: 500; line-height: 1.1; }
+h1, h2 { font-family: var(--heading); font-weight: 400; line-height: 1.1; }
 h1 { font-size: clamp(58px, 8.8vw, 112px); letter-spacing: -.045em; max-width: 1000px; margin: 0 0 30px; }
 .summary { max-width: 665px; color: var(--muted); font-size: clamp(16px, 1.6vw, 18px); margin: 0; }
 .content-section { display: grid; grid-template-columns: 30% minmax(0, 1fr); gap: 48px; border-top: 1px solid var(--border); padding: 48px 0 72px; }
