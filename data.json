@@ -1,7 +1,7 @@
 {
   "name": "Arnold T. Ocampo Jr.",
   "title": "Data Analyst | SQL & Data Pipelines",
-  "summary": "Data analyst with over 10 years of experience in analytics, reporting automation, and business intelligence. My work includes building ETL workflows with SQL, SSIS, and Power Automate; transforming data with Python and Power Query; and improving data quality. I am developing my data engineering skills, with familiarity in Azure Data Factory, Synapse, Databricks, and Snowflake.",
+  "summary": "Data professional with over 10 years of experience in analytics, reporting automation, and business intelligence. Experienced in bringing data from multiple sources together, cleaning and transforming it, and preparing reliable datasets for reporting and analysis. Building on this foundation to transition into data engineering, with a focus on how data moves between systems and stays accurate and usable along the way.",
   "email": "arjay.ocampo16@gmail.com",
   "links": [
     {
@@ -33,26 +33,41 @@
   ],
   "projects": [
     {
-      "name": "Job Skills Analyzer",
-      "description": "Scrapes job postings, loads them into a database, and shows which skills employers ask for most in a Streamlit dashboard.",
+      "name": "FlipTop: From API to Analysis",
+      "description": "Collects FlipTop video metadata through the YouTube Data API and saves reusable CSV and JSON datasets. Cleans and reshapes the data with pandas, then explores battle and emcee trends in a Jupyter notebook.",
       "stack": [
         "Python",
-        "SQLAlchemy",
         "pandas",
-        "Streamlit"
+        "YouTube Data API",
+        "Jupyter",
+        "Matplotlib"
       ],
-      "url": "https://github.com/your-username/job-skills-analyzer",
-      "featured": false
+      "url": "https://github.com/robindude8000/fliptop-eda",
+      "featured": true
     },
     {
-      "name": "Local medallion ETL",
-      "description": "Replace this example with the sources, transformations, and outcomes of your own pipeline project.",
+      "name": "Snowflake COVID-19 ETL",
+      "description": "A learning ETL project that loads COVID-19 CSV data into Snowflake and moves it through raw, cleaned, and monthly-summary layers. Includes SQL data-quality checks, stored procedures, and a daily task definition.",
       "stack": [
-        "Python",
-        "SQL Server"
+        "Snowflake",
+        "SQL",
+        "Stored procedures",
+        "Snowflake Tasks"
       ],
-      "url": "https://github.com/your-username/your-repo",
-      "featured": false
+      "url": "https://github.com/robindude8000/snowflake-covid-etl",
+      "featured": true
+    },
+    {
+      "name": "SQL Server Data Warehouse",
+      "description": "A practice warehouse integrating sample CRM and ERP CSV data in SQL Server. Uses bulk loads and stored procedures to clean and standardize records, then exposes customer and product dimensions and sales facts for analysis.",
+      "stack": [
+        "SQL Server",
+        "T-SQL",
+        "ETL",
+        "Dimensional modeling"
+      ],
+      "url": "https://github.com/robindude8000/sql-data-warehouse-project",
+      "featured": true
     }
   ],
   "skills": [
@@ -71,7 +86,6 @@
       "group": "Pipelines & transformation",
       "items": [
         "ETL workflows",
-        "SSIS",
         "Power Automate",
         "Python",
         "Power Query",
@@ -142,7 +156,7 @@
       "start": "2023-02",
       "end": "2025-04",
       "points": [
-        "Developed data and ETL pipelines across multiple sources using Power Automate, SQL, and SSIS.",
+        "Developed data and ETL pipelines across multiple sources using Power Automate and SQL.",
         "Supported data migrations with quality checks to help maintain accuracy between systems.",
         "Worked across Microsoft Dynamics, Genesys, and Salesforce data, adapting to different formats and toolsets while maintaining consistent reporting standards.",
         "Used SQL, Excel, Power BI, Tableau, and Amazon QuickSight to analyze customer operations and monitor agent productivity."

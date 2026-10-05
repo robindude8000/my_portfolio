@@ -43,7 +43,7 @@ For roles, use `YYYY-MM` dates and JSON `null` (without quotes) for a current ro
 
 Dates display as `Mar 2025 — Present`; current roles receive a Current label. Experience order is determined by date, even if you reorder the array.
 
-The profile and six work-history entries were updated from the supplied CV. Actual role titles and overlapping employment dates are retained; cloud platforms are labeled as familiarity rather than production expertise. Education has no date because none was supplied. The two example projects are hidden with `featured: false`; replace their URLs and descriptions with your real repositories before featuring them. Existing GitHub and LinkedIn links were retained.
+The profile and six work-history entries were updated from the supplied CV and subsequent corrections. Actual role titles and overlapping employment dates are retained; cloud platforms are labeled as familiarity rather than production expertise. Education has no date because none was supplied. The three featured projects link to the owner's actual repositories, and their descriptions were checked against README files and source code. Learning projects are distinct from professional experience; the Snowflake task is described as a definition, without claiming it is actively running. Existing GitHub and LinkedIn links were retained.
 
 ## GitHub Pages
 
