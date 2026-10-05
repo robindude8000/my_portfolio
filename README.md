@@ -57,7 +57,7 @@ data/data.json
 README.md
 ```
 
-Select your publishing branch and `/ (root)` as the Pages source in the repository settings. No workflow or build step is needed. All local asset paths are relative and work under a repository subpath. Root `data.json` is a compatibility snapshot; the website reads only `data/data.json`. Make routine profile updates in `data/data.json`.
+Select your publishing branch and `/ (root)` as the Pages source in the repository settings. No workflow or build step is needed. All local asset paths are relative and work under a repository subpath. The website reads `data/data.json`; this is the only profile data file to maintain.
 
 ## Design and accessibility
 
