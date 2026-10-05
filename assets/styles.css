@@ -1,8 +1,8 @@
 :root {
-  --ink: #151618;
+  --ink: #333333;
   --graphite: #26282b;
   --border-dark: #383b40;
-  --off-white: #f4f4f2;
+  --off-white: #dfdfdf;
   --muted-dark: #9a9da3;
   --background: var(--off-white);
   --text: var(--ink);

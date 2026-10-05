@@ -10,7 +10,7 @@ function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
   byId('theme-toggle').setAttribute('aria-pressed', String(theme === 'dark'));
   byId('theme-toggle').title = `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`;
-  document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#151618' : '#f4f4f2';
+  document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#333333' : '#dfdfdf';
 }
 applyTheme(document.documentElement.dataset.theme || (systemTheme.matches ? 'dark' : 'light'));
 byId('theme-toggle').addEventListener('click', () => {
