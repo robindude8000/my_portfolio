@@ -43,7 +43,7 @@ For roles, use `YYYY-MM` dates and JSON `null` (without quotes) for a current ro
 
 Dates display as `Mar 2025 — Present`; current roles receive a Current label. Experience order is determined by date, even if you reorder the array.
 
-**Before publishing:** replace the two example repository URLs, the example employer, the assumed `2022-01` start date, bullet points, and education. The identity and skills were seeded from the existing nested profile data; the GitHub profile URL was inferred from its Pages URL. Confirm everything reflects your actual CV.
+The profile and six work-history entries were updated from the supplied CV. Actual role titles and overlapping employment dates are retained; cloud platforms are labeled as familiarity rather than production expertise. Education has no date because none was supplied. The two example projects are hidden with `featured: false`; replace their URLs and descriptions with your real repositories before featuring them. Existing GitHub and LinkedIn links were retained.
 
 ## GitHub Pages
 
