@@ -23,7 +23,7 @@ Edit **only `data/data.json`** for routine updates. Use double quotes, avoid tra
 | `links` | Contact links, in file order; use absolute HTTPS URLs |
 | `pipeline` | Retained for compatibility; not displayed on the front page. Describe architecture within your projects instead. |
 | `projects` | File order; `featured: false` hides an item; omitted `featured` means visible |
-| `skills` | Dashboard columns and legend use group names; items render as tool blocks in file order |
+| `skills` | Groups and tags in file order |
 | `experience` | Automatically sorted by `start`, newest first |
 | `education` | File order; free-text `period` |
 
@@ -61,26 +61,9 @@ Select your publishing branch and `/ (root)` as the Pages source in the reposito
 
 ## Design and accessibility
 
-The original minimal design uses Source Serif 4 headings and Inter body text, with the ink/graphite/off-white palette. Dark mode uses the original ink background; light mode reverses the palette. Change the palette variables at the top of `assets/styles.css` to retheme. The header's Light/Dark toggle follows your system preference until you choose a mode, then remembers that choice in localStorage. If storage is unavailable, the toggle still works for the current page. The saved mode is applied before the first paint to avoid a theme flash.
+The minimal design pairs Montserrat headings with Plus Jakarta Sans body text and the ink/graphite/off-white palette. Dark mode uses the original ink background; light mode reverses the palette. Change the palette variables at the top of `assets/styles.css` to retheme. The header's Light/Dark toggle follows your system preference until you choose a mode, then remembers that choice in localStorage. If storage is unavailable, the toggle still works for the current page. The saved mode is applied before the first paint to avoid a theme flash.
 
-Google Fonts is the only external resource; system fallbacks work offline. Reduced-motion preferences disable smooth scrolling and hover transitions. All dynamic content is inserted with `textContent` and DOM methods; URL protocols are restricted to HTTP/HTTPS. Keyboard focus is visible. Projects use rows that invert on hover and focus. Contact is compact and shares the page background. There is no pipeline strip on the front page.
-
-## Skills dashboard
-
-Each skills group becomes a category column with stacked rectangular tool blocks. A color legend uses the exact same group labels. The chart is a categorical matrix, with no proficiency scores or implied numerical axis. There are no individual tool descriptions. Its category accents have separate light/dark CSS variables; the rest of the portfolio keeps its original neutral palette and typography. Columns wrap responsively, including a single-column layout on narrow phones.
-
-The existing data shape is unchanged. Edit only `data/data.json`, which is the file fetched by the live site; root `data.json` remains a matching compatibility snapshot:
-
-```json
-{
-  "group": "Data Transformation",
-  "items": ["Python", "Power Query", "pandas"]
-}
-```
-
-Rename groups to customize the legend and column headings. Add, reorder, or remove groups/tools in JSON. Empty or missing `skills` hides the section and navigation link. The renderer also accepts the previous experiment's object entries but displays only `name`; it ignores `level` and `context`. No chart library, canvas, external icons, or build step is used.
-
-Verified with 48 browser checks: legend/group correspondence, every skill item rendered, distinct category colors, names-only rendering, safe text insertion, empty-section hiding, and layouts at 360, 400, 719, 720, 980, and 1440px in both themes. The dashboard preview was visually inspected.
+Google Fonts is the only external resource; system fallbacks work offline. Reduced-motion preferences disable smooth scrolling and hover transitions. All dynamic content is inserted with `textContent` and DOM methods; URL protocols are restricted to HTTP/HTTPS. Keyboard focus is visible. Projects use rows that invert on hover and focus; skills use pill tags. Contact is compact and shares the page background. There is no pipeline strip on the front page.
 
 The optional GitHub API enrichment is intentionally omitted to honor the Google-Fonts-only external-resource constraint. There are no analytics, external images, or JavaScript libraries.
 

@@ -39,32 +39,6 @@ function tags(items) {
   list(items).forEach((item) => ul.append(node('li', item)));
   return ul;
 }
-function skillsDashboard(groups) {
-  const dashboard = node('div', undefined, 'skills-dashboard');
-  const legend = node('ul', undefined, 'skills-legend');
-  legend.setAttribute('aria-label', 'Skill categories');
-  const columns = node('div', undefined, 'skills-columns');
-  groups.forEach((group, index) => {
-    const colorClass = `skill-color-${index % 8}`;
-    const legendItem = node('li', undefined, colorClass);
-    const swatch = node('span', undefined, 'legend-swatch');
-    swatch.setAttribute('aria-hidden', 'true');
-    legendItem.append(swatch, node('span', group.group));
-    legend.append(legendItem);
-    const column = node('div', undefined, `skill-column ${colorClass}`);
-    column.append(node('h3', group.group));
-    const blocks = node('ul', undefined, 'skill-blocks');
-    list(group.items).forEach((item) => {
-      // Also tolerate entries from the earlier experiment; display names only.
-      const name = typeof item === 'string' ? item : text(item && item.name);
-      if (name) blocks.append(node('li', name, 'skill-block'));
-    });
-    column.append(blocks);
-    columns.append(column);
-  });
-  dashboard.append(legend, columns);
-  return dashboard;
-}
 function dateLabel(value) {
   if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(value)) return '';
   const [year, month] = value.split('-').map(Number);
@@ -96,9 +70,11 @@ function render(data) {
     project.append(node('h3', item.name), node('p', item.description), tags(item.stack));
     byId('project-list').append(project);
   }, 'Projects');
-  const skills = list(data.skills);
-  section('skills', skills, () => {}, 'Skills');
-  if (skills.length) byId('skill-list').append(skillsDashboard(skills));
+  section('skills', list(data.skills), (item) => {
+    const group = node('div', undefined, 'skill-group');
+    group.append(node('h3', item.group), tags(item.items));
+    byId('skill-list').append(group);
+  }, 'Skills');
   const experience = [...list(data.experience)].sort((a, b) => text(b.start).localeCompare(text(a.start)));
   section('experience', experience, (item) => {
     const entry = node('article', undefined, 'entry');
