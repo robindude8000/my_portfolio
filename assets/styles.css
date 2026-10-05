@@ -81,7 +81,7 @@ footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20
 @media (max-width: 900px) { .header-controls, nav { gap: 18px; } }
 @media (max-width: 719px) {
   .topbar-inner { padding: 16px 24px; gap: 12px; flex-wrap: wrap; }
-  .brand { font-size: 17px; }
+  .brand { font-size: 14px; }
   .header-controls { display: contents; }
   .theme-toggle { margin-left: auto; }
   nav { order: 3; width: 100%; gap: 20px; }
